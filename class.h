@@ -10,7 +10,14 @@ public:
     void fireball() const;
     void getStats() const;
     void getHealth() const;
-    void setHealth(int=16)
+    void setHealth(int=10)
+    void setStrength(int=10);
+    void setConstitution(int=10);
+    void setDexterity(int=10);
+    void setIntelligence(int=10);
+    void setWisdom(int=10);
+    void setCharisma(int=10);
+    void setHealth(int=10);
 
 private:
     int strength;
