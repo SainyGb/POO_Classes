@@ -11,9 +11,20 @@ Mage::Mage()
 
 Mage:Mage(int strength = 8, int constitution = 15, int dexterity = 12, int intelligence = 16, int wisdom = 16, int charisma = 11, int health = 16)
 {
-    std::cout << "Inicializando Mage no constructor da forma 'tradicional'.\n";
+    std::cout << "Inicializando Mage no constructor com os sets.\n";
+    setStrength(strength);
+    setConstitution(constitution);
+    setDexterity(dexterity);
+    setIntelligence(intelligence);
+    setWisdom(wisdom);
+    setCharisma(charisma);
+    setHealth(health)
+}
 
-    
+Mage:Mage(const Mage & other)
+{
+    this->health = other.health;
+    this->strength = other.strength;
 }
 
 Mage::~Mage()

@@ -4,7 +4,9 @@
 class Mage
 {
 public:
+    Mage();
     Mage(int = 8, int = 15, int = 12, int = 16, int = 16, int = 11, int = 16);
+    Mage(const Mage &);
     ~Mage();
 
     void fireball() const;
