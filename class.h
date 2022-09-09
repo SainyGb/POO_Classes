@@ -5,7 +5,7 @@ class Mage
 {
 public:
     Mage();
-    Mage(int = 8, int = 15, int = 12, int = 16, int = 16, int = 11, int = 16);
+    Mage(int = 8, int = 15, int = 12, int = 16, int = 16, int = 11, int = 16, int, int);
     Mage(const Mage &);
     ~Mage();
 
@@ -29,6 +29,7 @@ private:
     int wisdom;
     int charisma;
     int health;
+    
     const int MAXHEALTH;
     const int MAXMANA;
 };
