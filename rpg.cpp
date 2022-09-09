@@ -18,7 +18,7 @@ Mage::~Mage()
 {
 }
 
-void Mage::printStats() const
+void Mage::getStats() const
 {
     std::cout << "Strength: " << strength << '\n';
     std::cout << "Durability: " << constitution << '\n';

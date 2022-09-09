@@ -4,14 +4,19 @@
 class Mage
 {
 private:
-    int strength, constitution, dexterity, intelligence, wisdom, charisma;
+    int strength;
+    int constitution;
+    int dexterity;
+    int intelligence;
+    int wisdom;
+    int charisma;
 
 public:
     Mage(/* args */);
     ~Mage();
 
     void fireball() const;
-    void printStats() const;
+    void getStats() const;
 };
 
 #endif // SWORD_H
