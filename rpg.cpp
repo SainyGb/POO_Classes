@@ -4,14 +4,15 @@
 #include "class.h"
 
 Mage::Mage()
+:strength = 8, constitution = 15, dexterity = 12, intelligence = 16, wisdom = 16, charisma = 11, health = 16
 {
-    std::cout << "Inicializando Mage no constructor.\n";
-    strength = 8;
-    constitution = 15;
-    dexterity = 12;
-    intelligence = 16;
-    wisdom = 16;
-    charisma = 11;
+    std::cout << "Inicializando Mage no constructor da forma minimalista.\n";
+}
+
+Mage:Mage(int strength = 8, int constitution = 15, int dexterity = 12, int intelligence = 16, int wisdom = 16, int charisma = 11, int health = 16)
+{
+    std::cout << "Inicializando Mage no constructor da forma 'tradicional'.\n";
+    
 }
 
 Mage::~Mage()
@@ -41,4 +42,21 @@ void Mage::fireball() const
     }
 
     std::cout << "Your fireball did: " << dmg << "!!!";
+}
+
+void Mage::setHealth(int health)
+{
+    if (health >= 0)
+    {
+        this->health = health;
+        return;
+    }
+
+    this->health = 0;
+}
+
+
+void Mage::getHealth() const
+{
+    std::cout << "Health: " << health << '\n';
 }

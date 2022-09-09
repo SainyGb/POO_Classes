@@ -10,6 +10,7 @@ int main()
     Mage magelvl9;
     magelvl9.getStats();
     magelvl9.fireball();
+    magelvl9.setHealth();
 
     return 0;
 }
