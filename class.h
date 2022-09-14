@@ -5,21 +5,20 @@ class Mage
 {
 public:
     Mage();
-    Mage(int = 8, int = 15, int = 12, int = 16, int = 16, int = 11, int = 16, int, int);
+    Mage(int, int, int, int, int, int, int, int = 100, int = 100);
     Mage(const Mage &);
     ~Mage();
 
     void fireball() const;
     void getStats() const;
     void getHealth() const;
-    void setHealth(int=10)
-    void setStrength(int=10);
-    void setConstitution(int=10);
-    void setDexterity(int=10);
-    void setIntelligence(int=10);
-    void setWisdom(int=10);
-    void setCharisma(int=10);
-    void setHealth(int=10);
+    void setHealth(int);
+    void setStrength(int);
+    void setConstitution(int);
+    void setDexterity(int);
+    void setIntelligence(int);
+    void setWisdom(int);
+    void setCharisma(int);
 
 private:
     int strength;
@@ -29,7 +28,7 @@ private:
     int wisdom;
     int charisma;
     int health;
-    
+
     const int MAXHEALTH;
     const int MAXMANA;
 };

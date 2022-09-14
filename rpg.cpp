@@ -4,13 +4,13 @@
 #include "class.h"
 
 Mage::Mage()
-:strength = 8, constitution = 15, dexterity = 12, intelligence = 16, wisdom = 16, charisma = 11, health = 16, MAXHEALTH=100, MAXMANA=100
+    : strength(8), constitution(15), dexterity(12), intelligence(16), wisdom(16), charisma(11), health(16), MAXHEALTH(100), MAXMANA(100)
 {
     std::cout << "Inicializando Mage no constructor da forma minimalista.\n";
 }
 
-Mage:Mage(int strength = 8, int constitution = 15, int dexterity = 12, int intelligence = 16, int wisdom = 16, int charisma = 11, int health = 16, int MAXHEALTH, int MAXMANA)
-:MAXHEALTH(MAXHEALTH), MAXMANA(MAXMANA)
+Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int health, int MAXHEALTH, int MAXMANA)
+    : MAXHEALTH(MAXHEALTH), MAXMANA(MAXMANA)
 {
     std::cout << "Inicializando Mage no constructor com os sets.\n";
     setStrength(strength);
@@ -19,14 +19,19 @@ Mage:Mage(int strength = 8, int constitution = 15, int dexterity = 12, int intel
     setIntelligence(intelligence);
     setWisdom(wisdom);
     setCharisma(charisma);
-    setHealth(health)
+    setHealth(health);
 }
 
-Mage:Mage(const Mage & other)
-:MAXHEALTH(other.MAXHEALTH), MAXMANA(other.MAXMANA)
+Mage::Mage(const Mage &other)
+    : MAXHEALTH(other.MAXHEALTH), MAXMANA(other.MAXMANA)
 {
     this->health = other.health;
     this->strength = other.strength;
+    this->constitution = other.constitution;
+    this->charisma = other.charisma;
+    this->wisdom = other.wisdom;
+    this->dexterity = other.dexterity;
+    this->intelligence = other.intelligence;
 }
 
 Mage::~Mage()
@@ -69,16 +74,15 @@ void Mage::setHealth(int health)
     this->health = 0;
 }
 
-
-void Mage::setHealth(int health)
+void Mage::setStrength(int strength)
 {
-    if (health >= 0)
+    if (strength >= 0)
     {
-        this->health = health;
+        this->strength = strength;
         return;
     }
 
-    this->health = 0;
+    this->strength = 0;
 }
 
 void Mage::setConstitution(int constitution)
@@ -92,15 +96,15 @@ void Mage::setConstitution(int constitution)
     this->constitution = 0;
 }
 
-void Mage::setDextery(int dextery)
+void Mage::setDexterity(int dexterity)
 {
-    if (dextery >= 0)
+    if (dexterity >= 0)
     {
-        this->dextery = dextery;
+        this->dexterity = dexterity;
         return;
     }
 
-    this->dextery = 0;
+    this->dexterity = 0;
 }
 
 void Mage::setIntelligence(int intelligence)
