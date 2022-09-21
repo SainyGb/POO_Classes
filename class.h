@@ -1,6 +1,9 @@
 #ifndef MAGE_H
 #define MAGE_H
 
+#include <string>
+#include <vector>
+
 class Mage
 {
 public:
@@ -9,9 +12,19 @@ public:
     Mage(const Mage &);
     ~Mage();
 
+    void adicionarMagia(const std::string &novamagia);
+
+    void setCharName(std::string);
+    void getCharName();
+
+    void getConcentracao() const;
+    void ativarConcentracao();
+    void desativarConcentracao();
+
     void fireball() const;
     void getStats() const;
     void getHealth() const;
+
     void setHealth(int);
     void setStrength(int);
     void setConstitution(int);
@@ -19,6 +32,9 @@ public:
     void setIntelligence(int);
     void setWisdom(int);
     void setCharisma(int);
+
+    static int getNumChars() { return numChars; }
+    static int getNumMaxChars();
 
 private:
     int strength;
@@ -28,9 +44,21 @@ private:
     int wisdom;
     int charisma;
     int health;
+    int numMagias;
+
+    std::string charname;
+
+    bool concentracao;
 
     const int MAXHEALTH;
     const int MAXMANA;
+
+    std::vector<std::string *> magias;
+
+    static int numChars;
+
+    static const int NUMEROMAXCHARS = 5;
+    static const int NUMEROMAXMAGIA = 5;
 };
 
 #endif // SWORD_H

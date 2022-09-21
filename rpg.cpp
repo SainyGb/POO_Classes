@@ -1,12 +1,21 @@
 #include <iostream>
 #include <random>
+#include <stdexcept>
 
 #include "class.h"
+
+int Mage::numChars = 0;
+
+int Mage::getNumMaxChars()
+{
+    std::cout << NUMEROMAXCHARS << '\n';
+}
 
 Mage::Mage()
     : strength(8), constitution(15), dexterity(12), intelligence(16), wisdom(16), charisma(11), health(16), MAXHEALTH(100), MAXMANA(100)
 {
     std::cout << "Inicializando Mage no constructor da forma minimalista.\n";
+    this->numChars++;
 }
 
 Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int health, int MAXHEALTH, int MAXMANA)
@@ -20,6 +29,9 @@ Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int 
     setWisdom(wisdom);
     setCharisma(charisma);
     setHealth(health);
+    desativarConcentracao();
+
+    this->numChars++;
 }
 
 Mage::Mage(const Mage &other)
@@ -32,6 +44,8 @@ Mage::Mage(const Mage &other)
     this->wisdom = other.wisdom;
     this->dexterity = other.dexterity;
     this->intelligence = other.intelligence;
+
+    this->numChars++;
 }
 
 Mage::~Mage()
@@ -46,6 +60,50 @@ void Mage::getStats() const
     std::cout << "Intelligence: " << intelligence << '\n';
     std::cout << "Wisdom: " << wisdom << '\n';
     std::cout << "Charisma: " << charisma << '\n';
+}
+
+void Mage::adicionarMagia(const std::string &magiaNova)
+{
+    // O vector alunos pode crescer dinamicamente
+    // Mas só pode aceitar numAlunos
+
+    if (magias.size() < this->NUMEROMAXMAGIA)
+    {
+        magias.push_back(new std::string(magiaNova));
+        return;
+    }
+
+    std::cout << "Nao é possivel adicionar " << magiaNova << 'ao livro de feitiços.' << " O livro não suporta essa quantidade de magias.\n";
+}
+
+void Mage::getConcentracao() const
+{
+    std::cout << "Estado de Concentracao: " << concentracao << '\n';
+}
+
+void Mage::ativarConcentracao()
+{
+    concentracao = true;
+}
+
+void Mage::desativarConcentracao()
+{
+    concentracao = false;
+}
+
+void Mage::setCharName(std::string name)
+{
+    if (name.length() > 16)
+    {
+        std::cout << "Nome maior que 16 caracteres, tente novamente por favor\n ";
+        return;
+    }
+    this->charname = name;
+}
+
+void Mage::getCharName()
+{
+    std::cout << "O nome do seu personagem eh: " << charname << '\n';
 }
 
 void Mage::fireball() const

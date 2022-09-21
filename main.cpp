@@ -16,16 +16,25 @@ int main()
     std::cout << "Usando Mage no main\n";
 
     Mage magelvl9;
-    Mage magelvl3(strength, constitution, dexterity, intelligence, wisdom, charisma, health);
+    std::cout << "num de chars: " << magelvl9.getNumChars() << '\n';
+
+    const Mage magelvl3(strength, constitution, dexterity, intelligence, wisdom, charisma, health);
+    std::cout << "num de chars: " << magelvl3.getNumChars() << '\n';
     Mage othermagelvl3(magelvl3);
 
     std::cout << "Magelvl9\n\n";
     magelvl9.getStats();
     magelvl9.getHealth();
+    magelvl9.setCharName("Egildo");
+    magelvl9.getCharName();
+    magelvl9.ativarConcentracao();
+    magelvl9.getConcentracao();
+    magelvl9.getNumMaxChars();
 
     std::cout << "\nMagelvl3\n\n";
     magelvl3.getStats();
     magelvl3.getHealth();
+    magelvl3.getConcentracao();
 
     std::cout << "\nOtherMagelvl3\n\n";
     std::cout << "OtherMagelvl1 e uma copia do Magelvl3\n\n";
