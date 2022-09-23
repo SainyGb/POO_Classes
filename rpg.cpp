@@ -91,7 +91,7 @@ void Mage::desativarConcentracao()
     concentracao = false;
 }
 
-void Mage::setCharName(std::string name)
+void Mage::setCharName(const std::string &name)
 {
     if (name.length() > 16)
     {

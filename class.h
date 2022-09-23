@@ -12,9 +12,9 @@ public:
     Mage(const Mage &);
     ~Mage();
 
-    void adicionarMagia(const std::string &novamagia);
+    void adicionarMagia(const std::string &);
 
-    void setCharName(std::string);
+    void setCharName(const std::string &);
     void getCharName();
 
     void getConcentracao() const;
