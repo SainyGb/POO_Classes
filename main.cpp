@@ -34,7 +34,7 @@ int main()
     magelvl9.getConcentracao();
     magelvl9.getNumMaxChars();
 
-    std::cout << "Adicionando Magias\n";
+    std::cout << "Adicionando Magias p/ magelvl9 utilizando ponteiro\n";
     magelvl9Ptr->adicionarMagia();
     magelvl9Ptr->printarMagia();
 
