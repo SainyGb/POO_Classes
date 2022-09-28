@@ -55,7 +55,7 @@ private:
     const int MAXHEALTH;
     const int MAXMANA;
 
-    std::vector<std::string *> magias;
+    std::vector<std::string> magias;
 
     static int numChars;
 

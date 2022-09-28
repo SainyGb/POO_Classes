@@ -89,7 +89,7 @@ void Mage::adicionarMagia()
         {
             std::cout << "Nome da Magia: ";
             std::cin >> magiaNova;
-            magias.push_back(new std::string(magiaNova));
+            magias.push_back(std::string(magiaNova));
             std::cout << "Magia " << magiaNova << " adicionado(a) com sucesso'\n'";
         }
         else
