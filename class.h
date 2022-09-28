@@ -14,6 +14,7 @@ public:
 
     void adicionarMagia();
     void printarMagia();
+    void printarNiveisPoder();
 
     void setCharName(const std::string &);
     void getCharName();
@@ -60,6 +61,9 @@ private:
 
     static const int NUMEROMAXCHARS = 5;
     static const int NUMEROMAXMAGIA = 5;
+
+    static const int NIVEISDEPODER = 6;
+    static const std::string PODER[NIVEISDEPODER];
 };
 
 #endif // SWORD_H

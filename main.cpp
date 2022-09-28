@@ -21,8 +21,12 @@ int main()
     const Mage MAGELVL3(strength, constitution, dexterity, intelligence, wisdom, charisma, health);
     std::cout << "num de chars: " << MAGELVL3.getNumChars() << '\n';
     Mage othermagelvl3(MAGELVL3);
+    Mage *magePrt;
 
-    std::cout << "Magelvl9\n\n";
+    magePrt = &magelvl9;
+
+    std::cout
+        << "Magelvl9\n\n";
     magelvl9.getStats();
     magelvl9.getHealth();
     magelvl9.setCharName("Egildo");
@@ -31,14 +35,29 @@ int main()
     magelvl9.getConcentracao();
     magelvl9.getNumMaxChars();
 
-    std::cout << "\nMagelvl3\n\n";
-    MAGELVL3.getStats();
+    std::cout << "Adicionando Magias\n";
+    magelvl9.adicionarMagia();
+    magelvl9.printarMagia();
+
+    std::cout
+        << "\nMudando os valores de magelvl9\n";
+    magePrt->setHealth(999);
+    magePrt->setStrength(999);
+    magelvl9.getStats();
+    magelvl9.getHealth();
+
+    std::cout
+        << "\nMagelvl3\n\n";
     MAGELVL3.getHealth();
+    MAGELVL3.getStats();
     MAGELVL3.getConcentracao();
 
     std::cout << "\nOtherMagelvl3\n\n";
     std::cout << "OtherMagelvl1 e uma copia do Magelvl3\n\n";
     othermagelvl3.getStats();
     othermagelvl3.getHealth();
+
+    std::cout << "Mostrando os niveis de poder\n";
+    magePrt->printarNiveisPoder();
     return 0;
 }

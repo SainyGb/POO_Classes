@@ -5,6 +5,7 @@
 #include "class.h"
 
 int Mage::numChars = 0;
+const std::string Mage::PODER[NIVEISDEPODER] = {"F", "D", "C", "B", "A", "S"};
 
 void Mage::getNumMaxChars()
 {
@@ -67,32 +68,36 @@ void Mage::adicionarMagia()
 {
     while (true)
     {
-        std::string magiaNova;
         int desejo = -1;
-        std::cout << "Deseja adicionar uma magia ?";
-        while (desejo != 0 or desejo != 1)
-        {
-            std::cout << "0 - Nao";
-            std::cout << "1 - Sim";
-            std::cin >> desejo;
-            if (desejo != 0 or desejo != 1)
-            {
-                std::cout << "Opcao invalida, tente novamente. \n";
-            }
-        }
+        std::string magiaNova = "";
+        std::cout << "Deseja adicionar uma magia ?\n";
+        // while (desejo != 0 or desejo != 1)
+        // {
+        std::cout << "0 - Nao\n";
+        std::cout << "1 - Sim\n";
+        std::cin >> desejo;
+        // if (desejo != 0 or desejo != 1)
+        // {
+        //     std::cout << "Opcao invalida, tente novamente. \n";
+        // }
+        // }
         if (desejo == 0)
         {
             return;
         }
         if (magias.size() < this->NUMEROMAXMAGIA)
         {
+            std::cout << "Nome da Magia: ";
+            std::cin >> magiaNova;
             magias.push_back(new std::string(magiaNova));
             std::cout << "Magia " << magiaNova << " adicionado(a) com sucesso'\n'";
+        }
+        else
+        {
+            std::cout << "Nao é possivel adicionar " << magiaNova << "ao livro de feitiços."
+                      << " O livro não suporta essa quantidade de magias.\n";
             return;
         }
-
-        std::cout << "Nao é possivel adicionar " << magiaNova << "ao livro de feitiços."
-                  << " O livro não suporta essa quantidade de magias.\n";
     }
 }
 
@@ -104,11 +109,22 @@ void Mage::printarMagia()
         std::cout << "Nao tem nenhuma magia para mostrar\n";
         return;
     }
-    for (auto magia : magias)
+    //     for (auto magia : this->magias)
+    //     {
+    //         std::cout << "Magia " << cont << " - " << magia << "\n";
+    //         cont++;
+    //     }
+    for (int i = 0; i < magias.size(); i++)
     {
-        std::cout << "Magia " << cont << " - " << magia << "\n";
+        std::cout << "Magia " << cont << " - " << magias[i] << "\n";
         cont++;
     }
+}
+
+void Mage::printarNiveisPoder()
+{
+    for (int i = 0; i < NIVEISDEPODER; i++)
+        std::cout << PODER[i] << '\n';
 }
 
 void Mage::getConcentracao() const
@@ -158,11 +174,12 @@ void Mage::fireball() const
 
 void Mage::setHealth(int health)
 {
-    if (health >= 0)
+    if (health >= 0 and health < MAXHEALTH)
     {
         this->health = health;
         return;
     }
+    std::cout << "Tentado ser safado, ne?\n";
 
     this->health = 0;
 }
