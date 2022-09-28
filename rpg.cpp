@@ -6,7 +6,7 @@
 
 int Mage::numChars = 0;
 
-int Mage::getNumMaxChars()
+void Mage::getNumMaxChars()
 {
     std::cout << NUMEROMAXCHARS << '\n';
 }
@@ -50,6 +50,7 @@ Mage::Mage(const Mage &other)
 
 Mage::~Mage()
 {
+    this->numChars--;
 }
 
 void Mage::getStats() const
@@ -62,18 +63,52 @@ void Mage::getStats() const
     std::cout << "Charisma: " << charisma << '\n';
 }
 
-void Mage::adicionarMagia(const std::string &magiaNova)
+void Mage::adicionarMagia()
 {
-    // O vector alunos pode crescer dinamicamente
-    // Mas só pode aceitar numAlunos
-
-    if (magias.size() < this->NUMEROMAXMAGIA)
+    while (true)
     {
-        magias.push_back(new std::string(magiaNova));
+        std::string magiaNova;
+        int desejo = -1;
+        std::cout << "Deseja adicionar uma magia ?";
+        while (desejo != 0 or desejo != 1)
+        {
+            std::cout << "0 - Nao";
+            std::cout << "1 - Sim";
+            std::cin >> desejo;
+            if (desejo != 0 or desejo != 1)
+            {
+                std::cout << "Opcao invalida, tente novamente. \n";
+            }
+        }
+        if (desejo == 0)
+        {
+            return;
+        }
+        if (magias.size() < this->NUMEROMAXMAGIA)
+        {
+            magias.push_back(new std::string(magiaNova));
+            std::cout << "Magia " << magiaNova << " adicionado(a) com sucesso'\n'";
+            return;
+        }
+
+        std::cout << "Nao é possivel adicionar " << magiaNova << "ao livro de feitiços."
+                  << " O livro não suporta essa quantidade de magias.\n";
+    }
+}
+
+void Mage::printarMagia()
+{
+    int cont = 0;
+    if (this->magias.size() <= 0)
+    {
+        std::cout << "Nao tem nenhuma magia para mostrar\n";
         return;
     }
-
-    std::cout << "Nao é possivel adicionar " << magiaNova << 'ao livro de feitiços.' << " O livro não suporta essa quantidade de magias.\n";
+    for (auto magia : magias)
+    {
+        std::cout << "Magia " << cont << " - " << magia << "\n";
+        cont++;
+    }
 }
 
 void Mage::getConcentracao() const

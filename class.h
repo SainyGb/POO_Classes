@@ -12,7 +12,8 @@ public:
     Mage(const Mage &);
     ~Mage();
 
-    void adicionarMagia(const std::string &);
+    void adicionarMagia();
+    void printarMagia();
 
     void setCharName(const std::string &);
     void getCharName();
@@ -34,7 +35,7 @@ public:
     void setCharisma(int);
 
     static int getNumChars() { return numChars; }
-    static int getNumMaxChars();
+    static void getNumMaxChars();
 
 private:
     int strength;
