@@ -16,14 +16,13 @@ int main()
     std::cout << "Usando Mage no main\n";
 
     Mage magelvl9;
-    std::cout << "num de chars: " << magelvl9.getNumChars() << '\n';
-
     const Mage MAGELVL3(strength, constitution, dexterity, intelligence, wisdom, charisma, health);
-    std::cout << "num de chars: " << MAGELVL3.getNumChars() << '\n';
     Mage othermagelvl3(MAGELVL3);
-    Mage *magePrt;
+    Mage *magelvl9Ptr = &magelvl9;
+    Mage *magePrt = new Mage();
 
-    magePrt = &magelvl9;
+    std::cout << "num de chars: " << magelvl9.getNumChars() << '\n';
+    std::cout << "num de chars: " << MAGELVL3.getNumChars() << '\n';
 
     std::cout
         << "Magelvl9\n\n";
@@ -36,15 +35,16 @@ int main()
     magelvl9.getNumMaxChars();
 
     std::cout << "Adicionando Magias\n";
-    magelvl9.adicionarMagia();
-    magelvl9.printarMagia();
+    magelvl9Ptr->adicionarMagia();
+    magelvl9Ptr->printarMagia();
 
     std::cout
-        << "\nMudando os valores de magelvl9\n";
+        << "\nMudando os valores de magePtr\n";
     magePrt->setHealth(999);
+    magePrt->getHealth();
     magePrt->setStrength(999);
-    magelvl9.getStats();
-    magelvl9.getHealth();
+    magePrt->getStats();
+    delete magePrt;
 
     std::cout
         << "\nMagelvl3\n\n";
@@ -53,7 +53,7 @@ int main()
     MAGELVL3.getConcentracao();
 
     std::cout << "\nOtherMagelvl3\n\n";
-    std::cout << "OtherMagelvl1 e uma copia do Magelvl3\n\n";
+    std::cout << "OtherMagelvl3 e uma copia do Magelvl3\n\n";
     othermagelvl3.getStats();
     othermagelvl3.getHealth();
 
