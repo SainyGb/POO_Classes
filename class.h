@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Mage
 {
@@ -15,6 +16,16 @@ public:
     void adicionarMagia();
     void printarMagia();
     void printarNiveisPoder();
+
+    void printMinions() const;
+    void gerarMinions(const std::string &);
+
+    void gerarInimigos(const std::string &);
+    void printInimigos() const;
+    std::string escolherInimigosRandom();
+
+    void adicionarInv(const std::string &);
+    void printInv() const;
 
     void setCharName(const std::string &);
     void getCharName();
@@ -56,6 +67,8 @@ private:
     const int MAXMANA;
 
     std::vector<std::string> magias;
+    std::vector<std::string *> inimigos;
+    std::vector<std::string *> minions;
 
     static int numChars;
 
@@ -64,6 +77,21 @@ private:
 
     static const int NIVEISDEPODER = 6;
     static const std::string PODER[NIVEISDEPODER];
+
+    static const int MAXNUMINIMIGOS = 6;
+
+    std::string *invPtr;
+    int invSize;
+    int nextInv;
+
+    std::string *minionsPtr;
+    static const int MAXNUMMINIOS = 2;
+    int nextMinion;
+
+    std::map<const int, std::string> mapaInimigos;
+    void adicionarSlotInv(std::string);
+
+    // std::string escolherInimigosRandom();
 };
 
 #endif // SWORD_H

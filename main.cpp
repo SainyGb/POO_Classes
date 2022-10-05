@@ -21,6 +21,10 @@ int main()
     Mage *magelvl9Ptr = &magelvl9;
     Mage *magePrt = new Mage();
 
+    std::vector<std::string *> inimigos;
+    for (int i = 0; i <= 6; i++)
+        inimigos.push_back(new std::string(magelvl9.escolherInimigosRandom()));
+
     std::cout << "num de chars: " << magelvl9.getNumChars() << '\n';
     std::cout << "num de chars: " << MAGELVL3.getNumChars() << '\n';
 
@@ -59,5 +63,38 @@ int main()
 
     std::cout << "Mostrando os niveis de poder\n";
     magePrt->printarNiveisPoder();
+
+    std::cout << "Gerando inimigos: \n\n";
+    for (int i = 0; i < inimigos.size(); i++)
+    {
+        magelvl9.gerarInimigos(*inimigos[i]);
+    }
+
+    std::cout << "Printando inimigos: \n\n";
+    magelvl9.printInimigos();
+
+    for (int i = 0; i < inimigos.size(); i++)
+    {
+        delete inimigos[i];
+        inimigos.pop_back();
+    }
+
+    std::cout << "Adicionando itens no inventário\n";
+    magelvl9.adicionarInv("Couro");
+    magelvl9.adicionarInv("Carne de Zumbi");
+    magelvl9.adicionarInv("adaga quebrada");
+    magelvl9.adicionarInv("Couro");
+    magelvl9.adicionarInv("Couro");
+    magelvl9.adicionarInv("Couro");
+
+    std::cout << "Mostrando Inventario: \n\n";
+    magelvl9.printInv();
+
+    std::cout << "Invocando minions\n\n";
+    magelvl9.gerarMinions("Lobo da floresta");
+    magelvl9.gerarMinions("Lobo da floresta");
+    magelvl9.gerarMinions("Lobo da floresta");
+    magelvl9.printMinions();
+
     return 0;
 }
