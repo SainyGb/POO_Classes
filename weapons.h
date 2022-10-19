@@ -1,6 +1,8 @@
 #ifndef WEAPONS_H
 #define WEAPONS_H
 
+#include <string>
+
 class Weapons
 {
 public:
@@ -17,10 +19,17 @@ public:
     void getDurability();
     void getUpgradeTier();
 
+    void adicionarInv(const std::string &);
+    void printInv() const;
+
 private:
     int dmg;
     int durability;
     int upgradeTier;
+
+    std::string *invPtr;
+    int invSize;
+    int nextInv;
     // place holder for date
 };
 

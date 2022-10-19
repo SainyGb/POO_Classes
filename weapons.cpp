@@ -6,7 +6,7 @@
 #include "weapons.h"
 
 Weapons::Weapons()
-    : dmg(10), durability(25), upgradeTier(0)
+    : dmg(10), durability(25), upgradeTier(0), invSize(10), invPtr(0), nextInv(0)
 {
 }
 
@@ -15,6 +15,9 @@ Weapons::Weapons(int dmg, int durability, int upgrade)
     setDmg(dmg);
     setDurability(durability);
     setUpgradeTier(upgrade);
+    invSize = 10;
+    invPtr = 0;
+    nextInv = 0;
 }
 
 Weapons::Weapons(const Weapons &other)
@@ -22,10 +25,17 @@ Weapons::Weapons(const Weapons &other)
     this->dmg = other.dmg;
     this->durability = other.durability;
     this->upgradeTier = other.upgradeTier;
+
+    this->invSize = other.invSize;
+    this->nextInv = other.nextInv;
+    this->invPtr = new std::string[this->invSize];
+    for (int i = 0; i < nextInv; i++)
+        this->invPtr[i] = other.invPtr[i];
 }
 
 Weapons::~Weapons()
 {
+    delete[] invPtr;
 }
 
 void Weapons::setDmg(int dmg)
@@ -77,4 +87,29 @@ void Weapons::setUpgradeTier(int upgrade)
 void Weapons::getUpgradeTier()
 {
     std::cout << "A arma tem: " << upgradeTier << " tiers de upgrade" << std::endl;
+}
+
+void Weapons::adicionarInv(const std::string &weapon)
+{
+    if (nextInv < invSize)
+    {
+        invPtr[nextInv++] = weapon;
+        return;
+    }
+
+    if (invSize == 0)
+    {
+        invSize = 1;
+        invPtr = new std::string[invSize];
+        invPtr[nextInv++] = weapon;
+        return;
+    }
+
+    std::cout << "Limite de inventario de armas alcancado.\n";
+}
+
+void Weapons::printInv() const
+{
+    for (int i = 0; i < nextInv; i++)
+        std::cout << invPtr[i] << '\n';
 }

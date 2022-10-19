@@ -6,7 +6,7 @@
 #include "itens.h"
 
 Itens::Itens()
-    : price(10), qtd(1), type("pocao")
+    : price(10), qtd(1), type("pocao"), invSize(10), invPtr(0), nextInv(0)
 {
 }
 
@@ -15,6 +15,9 @@ Itens::Itens(int price, int qtd, std::string type)
     setPrice(price);
     setQtd(qtd);
     setType(type);
+    invSize = 10;
+    invPtr = 0;
+    nextInv = 0;
 }
 
 Itens::Itens(const Itens &other)
@@ -22,10 +25,17 @@ Itens::Itens(const Itens &other)
     this->price = other.price;
     this->qtd = other.qtd;
     this->type = other.type;
+
+    this->invSize = other.invSize;
+    this->nextInv = other.nextInv;
+    this->invPtr = new std::string[this->invSize];
+    for (int i = 0; i < nextInv; i++)
+        this->invPtr[i] = other.invPtr[i];
 }
 
 Itens::~Itens()
 {
+    delete[] invPtr;
 }
 
 void Itens::setPrice(int price)
@@ -75,4 +85,29 @@ void Itens::setType(std::string type)
 void Itens::getType()
 {
     std::cout << "O item eh do tipo: " << type << std::endl;
+}
+
+void Itens::adicionarInv(const std::string &item)
+{
+    if (nextInv < invSize)
+    {
+        invPtr[nextInv++] = item;
+        return;
+    }
+
+    if (invSize == 0)
+    {
+        invSize = 1;
+        invPtr = new std::string[invSize];
+        invPtr[nextInv++] = item;
+        return;
+    }
+
+    std::cout << "Limite de inventario de itens alcancado.\n";
+}
+
+void Itens::printInv() const
+{
+    for (int i = 0; i < nextInv; i++)
+        std::cout << invPtr[i] << '\n';
 }

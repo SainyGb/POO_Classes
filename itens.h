@@ -19,11 +19,18 @@ public:
     void getQtd();
     void getType();
 
+    void adicionarInv(const std::string &);
+    void Itens::printInv() const;
+
 private:
     int price;
     int qtd;
     std::string type;
     // place holder for date
+
+    std::string *invPtr;
+    int invSize;
+    int nextInv;
 };
 
 #endif
