@@ -6,7 +6,7 @@
 #include "itens.h"
 
 Itens::Itens()
-    : price(10), qtd(1), type("pocao"), invSize(10), invPtr(0), nextInv(0)
+    : price(10), qtd(1), type("pocao"), invSize(10), invPtr(0), nextInv(0), raro(0)
 {
 }
 
@@ -15,6 +15,7 @@ Itens::Itens(int price, int qtd, std::string type)
     setPrice(price);
     setQtd(qtd);
     setType(type);
+    desativarRaro();
     invSize = 10;
     invPtr = 0;
     nextInv = 0;
@@ -25,6 +26,7 @@ Itens::Itens(const Itens &other)
     this->price = other.price;
     this->qtd = other.qtd;
     this->type = other.type;
+    this->raro = other.raro;
 
     this->invSize = other.invSize;
     this->nextInv = other.nextInv;
@@ -36,6 +38,21 @@ Itens::Itens(const Itens &other)
 Itens::~Itens()
 {
     delete[] invPtr;
+}
+
+void Itens::getRaro() const
+{
+    std::cout << "Raro: " << raro << '\n';
+}
+
+void Itens::ativarRaro()
+{
+    raro = true;
+}
+
+void Itens::desativarRaro()
+{
+    raro = false;
 }
 
 void Itens::setPrice(int price)
@@ -110,4 +127,57 @@ void Itens::printInv() const
 {
     for (int i = 0; i < nextInv; i++)
         std::cout << invPtr[i] << '\n';
+}
+
+void Itens::operator=(const Itens &item)
+{
+    price = item.price;
+    type = item.type;
+}
+
+void Itens::operator==(const Itens &item)
+{
+    if (price == item.price)
+    {
+        std::cout << "\nO atributo price eh igual\n";
+    }
+    else
+    {
+        std::cout << "O atributo price eh diferente\n";
+    }
+
+    if (type == item.type)
+    {
+        std::cout << "O atributo type eh igual\n";
+    }
+    else
+    {
+        std::cout << "O atributo type eh diferente\n";
+    }
+}
+
+void Itens::operator!=(const Itens &item)
+{
+    if (price != item.price)
+    {
+        std::cout << "\nO atributo price eh diferente\n";
+    }
+    else
+    {
+        std::cout << "\nO atributo price eh igual\n";
+    }
+    if (type != item.type)
+    {
+        std::cout << "O atributo type eh diferente\n";
+    }
+    else
+    {
+        std::cout << "O atributo type eh igual\n";
+    }
+}
+
+Itens Itens::operator!()
+{
+    raro = !raro;
+    return Itens(raro);
 }

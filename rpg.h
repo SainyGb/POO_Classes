@@ -5,10 +5,24 @@
 #include <vector>
 #include <map>
 
+#include "Data.h"
+#include "weapons.h"
+#include "itens.h"
+
 class Mage
 {
+    friend std::ostream &operator<<(std::ostream &, const Mage &);
+
 public:
-    Mage();
+    void operator=(const Mage &);
+
+    void operator==(const Mage &);
+
+    void operator!=(const Mage &);
+
+    Mage operator!();
+
+    Mage(const Data & = Data(19, 10, 2022));
     Mage(int, int, int, int, int, int, int, int = 100, int = 100);
     Mage(const Mage &);
     ~Mage();
@@ -24,6 +38,8 @@ public:
         int peso;
         std::string nome;
     };
+
+    void mostrarData() const;
 
     Pet invocarPet();
     void getPet(const Pet &);
@@ -61,6 +77,8 @@ public:
     static void getNumMaxChars();
 
 private:
+    Data dataAtual;
+
     int strength;
     int constitution;
     int dexterity;

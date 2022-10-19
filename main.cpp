@@ -1,7 +1,16 @@
 #include <iostream>
 
-//#include "class.h"
+#include "rpg.h"
 #include "rpg.cpp"
+
+#include "Data.h"
+#include "Data.cpp"
+
+#include "weapons.h"
+#include "weapons.cpp"
+
+#include "itens.h"
+#include "itens.cpp"
 
 int main()
 {
@@ -29,22 +38,48 @@ int main()
     std::cout << "num de chars: " << MAGELVL3.getNumChars() << '\n';
 
     std::cout
-        << "Magelvl9\n\n";
-    magelvl9.getStats();
-    magelvl9.getHealth();
-    magelvl9.setCharName("Egildo");
-    magelvl9.getCharName();
-    magelvl9.ativarConcentracao();
+        << "\nMagelvl9\n\n";
+    // magelvl9.getStats();
+    // magelvl9.getHealth();
+    // magelvl9.setCharName("Egildo");
+    // magelvl9.getCharName();
+    // magelvl9.ativarConcentracao();
+    // magelvl9.getConcentracao();
+    std::cout << magelvl9;
+
+    // std::cout
+    //     << "Adicionando Magias p/ magelvl9 utilizando ponteiro\n";
+    // magelvl9Ptr->adicionarMagia();
+    // magelvl9Ptr->printarMagia();
+
+    std::cout
+        << "\nMagelvl3\n\n";
+    MAGELVL3.getHealth();
+    MAGELVL3.getStats();
+    MAGELVL3.getConcentracao();
+
+    std::cout << "\nUsando operador = para copiar atributos do mage lvl3 para o lvl9\n";
+    magelvl9 = MAGELVL3;
+    cout << magelvl9;
+
+    std::cout << "\nUsando operador == para comparar atributos do mage lvl3 com o mage lvl9";
+    magelvl9 == MAGELVL3;
+
+    std::cout << "\nUsando operador != para comparar atributos do mage lvl3 com o mage lvl9";
+    magelvl9 != MAGELVL3;
+
+    std::cout << "\nUsando operador ! para negar a concentracao do mage lvl 9\n";
+    std::cout << "Sem negar concentracao: ";
     magelvl9.getConcentracao();
-    magelvl9.getNumMaxChars();
+    std::cout << "\nDepois de negar com o operador: ";
+    !magelvl9;
+    magelvl9.getConcentracao();
 
-    std::cout << "Adicionando Magias p/ magelvl9 utilizando ponteiro\n";
-    magelvl9Ptr->adicionarMagia();
-    magelvl9Ptr->printarMagia();
-
-    std::cout << "\nCriando Pet\n";
-    Mage::Pet pet = magelvl9.invocarPet();
-    magelvl9.getPet(pet);
+    std::cout
+        << "\nOtherMagelvl3\n\n";
+    std::cout << "OtherMagelvl3 e uma copia do Magelvl3\n\n";
+    othermagelvl3.getStats();
+    othermagelvl3.getHealth();
 
     std::cout
         << "\nMudando os valores de magePtr\n";
@@ -54,16 +89,9 @@ int main()
     magePrt->getStats();
     delete magePrt;
 
-    std::cout
-        << "\nMagelvl3\n\n";
-    MAGELVL3.getHealth();
-    MAGELVL3.getStats();
-    MAGELVL3.getConcentracao();
-
-    std::cout << "\nOtherMagelvl3\n\n";
-    std::cout << "OtherMagelvl3 e uma copia do Magelvl3\n\n";
-    othermagelvl3.getStats();
-    othermagelvl3.getHealth();
+    std::cout << "\nCriando Pet\n";
+    Mage::Pet pet = magelvl9.invocarPet();
+    magelvl9.getPet(pet);
 
     std::cout << "Mostrando os niveis de poder\n";
     magePrt->printarNiveisPoder();

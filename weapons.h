@@ -3,6 +3,11 @@
 
 #include <string>
 
+// FALTA FAZER:
+//  ADICIONA O ATRIBUTO NOME TANTO NAS WEAPONS QUANTO NOS ITENS E USA O NOME PRA ADICIONAR NO INVENTARIO
+//  Colocar dentro de uma de suas classes a classe Date.
+//  Fazer a sobrecarga para cada classe dos operadores =, ==, ≠, ! e << (friend).
+
 class Weapons
 {
 public:

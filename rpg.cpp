@@ -5,6 +5,9 @@
 
 #include "rpg.h"
 
+#include "weapons.h"
+#include "itens.h"
+
 int Mage::numChars = 0;
 const std::string Mage::PODER[NIVEISDEPODER] = {"F", "D", "C", "B", "A", "S"};
 
@@ -13,12 +16,12 @@ void Mage::getNumMaxChars()
     std::cout << NUMEROMAXCHARS << '\n';
 }
 
-Mage::Mage()
-    : strength(8), constitution(15), dexterity(12), intelligence(16), wisdom(16), charisma(11), health(16), MAXHEALTH(100), MAXMANA(100)
+Mage::Mage(const Data &dataOut)
+    : strength(8), constitution(15), dexterity(12), intelligence(16), wisdom(16), charisma(11), health(16), MAXHEALTH(100), MAXMANA(100), dataAtual(dataOut)
 {
     std::cout << "Inicializando Mage no constructor da forma minimalista.\n";
     this->numChars++;
-    invSize = 0;
+    invSize = 5;
     invPtr = 0;
     nextInv = 0;
     minionsPtr = 0;
@@ -26,7 +29,7 @@ Mage::Mage()
 }
 
 Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int wisdom, int charisma, int health, int MAXHEALTH, int MAXMANA)
-    : MAXHEALTH(MAXHEALTH), MAXMANA(MAXMANA)
+    : MAXHEALTH(MAXHEALTH), MAXMANA(MAXMANA) //, dataNascimento()
 {
     std::cout << "Inicializando Mage no constructor com os sets.\n";
     setStrength(strength);
@@ -37,7 +40,7 @@ Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int 
     setCharisma(charisma);
     setHealth(health);
     desativarConcentracao();
-    invSize = 0;
+    invSize = 5;
     invPtr = 0;
     nextInv = 0;
     minionsPtr = 0;
@@ -82,7 +85,68 @@ Mage::~Mage()
     delete[] minionsPtr;
     for (auto i = 0; i < inimigos.size(); i++)
         delete this->inimigos[i];
+    inimigos.clear();
     this->numChars--;
+}
+
+void Mage::operator=(const Mage &mage)
+{
+    health = mage.health;
+    strength = mage.strength;
+}
+
+void Mage::operator==(const Mage &mage)
+{
+    if (health == mage.health)
+    {
+        std::cout << "\nO atributo health eh igual\n";
+    }
+    else
+    {
+        std::cout << "O atributo health eh diferente\n";
+    }
+
+    if (strength == mage.strength)
+    {
+        std::cout << "O atributo strength eh igual\n";
+    }
+    else
+    {
+        std::cout << "O atributo strength eh diferente\n";
+    }
+}
+
+void Mage::operator!=(const Mage &mage)
+{
+    if (health != mage.health)
+    {
+        std::cout << "\nO atributo health eh diferente\n";
+    }
+    else
+    {
+        std::cout << "\nO atributo health eh igual\n";
+    }
+    if (strength != mage.strength)
+    {
+        std::cout << "O atributo strength eh diferente\n";
+    }
+    else
+    {
+        std::cout << "O atributo strength eh igual\n";
+    }
+}
+
+Mage Mage::operator!()
+{
+    concentracao = !concentracao;
+    return Mage(concentracao);
+}
+
+void Mage::mostrarData() const
+{
+    std::cout << "A data atual eh: ";
+    dataAtual.print();
+    std::cout << '\n';
 }
 
 Mage::Pet Mage::invocarPet()
@@ -431,4 +495,21 @@ void Mage::setCharisma(int charisma)
 void Mage::getHealth() const
 {
     std::cout << "Health: " << health << '\n';
+}
+
+std::ostream &operator<<(std::ostream &out, const Mage &criacao)
+{
+    out << "Seu mago foi criado em: ";
+    criacao.dataAtual.print();
+    out << '\n';
+    out << "Strength: " << criacao.strength << '\n';
+    out << "Durability: " << criacao.constitution << '\n';
+    out << "Dexterity: " << criacao.dexterity << '\n';
+    out << "Intelligence: " << criacao.intelligence << '\n';
+    out << "Wisdom: " << criacao.wisdom << '\n';
+    out << "Charisma: " << criacao.charisma << '\n';
+    out << "Health: " << criacao.health << '\n';
+    out << "O nome do seu personagem eh: " << criacao.charname << '\n';
+    out << "Estado de Concentracao: " << criacao.concentracao << '\n';
+    return out;
 }
