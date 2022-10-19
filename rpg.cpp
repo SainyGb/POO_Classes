@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <map>
 
-#include "class.h"
+#include "rpg.h"
 
 int Mage::numChars = 0;
 const std::string Mage::PODER[NIVEISDEPODER] = {"F", "D", "C", "B", "A", "S"};
@@ -49,6 +49,7 @@ Mage::Mage(int strength, int constitution, int dexterity, int intelligence, int 
 Mage::Mage(const Mage &other)
     : MAXHEALTH(other.MAXHEALTH), MAXMANA(other.MAXMANA)
 {
+
     this->health = other.health;
     this->strength = other.strength;
     this->constitution = other.constitution;
@@ -82,6 +83,42 @@ Mage::~Mage()
     for (auto i = 0; i < inimigos.size(); i++)
         delete this->inimigos[i];
     this->numChars--;
+}
+
+Mage::Pet Mage::invocarPet()
+{
+    Pet pet;
+    std::string animal_s;
+    int tamanho_s;
+    int peso_s;
+    std::string nome_s;
+
+    std::cout << "Qual o animal que deseja invocar?\n";
+    std::cin >> animal_s;
+    pet.animal = animal_s;
+
+    std::cout << "Qual o tamanho dele?\n";
+    std::cin >> tamanho_s;
+    pet.tamanho = tamanho_s;
+
+    std::cout << "Qual o peso dele? \n";
+    std::cin >> peso_s;
+    pet.peso = peso_s;
+
+    std::cout << "Qual será o nome dele? \n";
+    std::cin >> nome_s;
+    pet.nome = nome_s;
+
+    return pet;
+}
+
+void Mage::getPet(const Pet &animal)
+{
+    std::cout << "\nPrintando o pet\n";
+    std::cout << "animal: " << animal.animal << std::endl;
+    std::cout << "tamanho: " << animal.tamanho << std::endl;
+    std::cout << "peso: " << animal.peso << std::endl;
+    std::cout << "nome: " << animal.nome << std::endl;
 }
 
 void Mage::getStats() const

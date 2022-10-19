@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "class.h"
+//#include "class.h"
 #include "rpg.cpp"
 
 int main()
@@ -41,6 +41,10 @@ int main()
     std::cout << "Adicionando Magias p/ magelvl9 utilizando ponteiro\n";
     magelvl9Ptr->adicionarMagia();
     magelvl9Ptr->printarMagia();
+
+    std::cout << "\nCriando Pet\n";
+    Mage::Pet pet = magelvl9.invocarPet();
+    magelvl9.getPet(pet);
 
     std::cout
         << "\nMudando os valores de magePtr\n";

@@ -17,6 +17,17 @@ public:
     void printarMagia();
     void printarNiveisPoder();
 
+    struct Pet
+    {
+        std::string animal;
+        int tamanho;
+        int peso;
+        std::string nome;
+    };
+
+    Pet invocarPet();
+    void getPet(const Pet &);
+
     void printMinions() const;
     void gerarMinions(const std::string &);
 
@@ -94,4 +105,4 @@ private:
     // std::string escolherInimigosRandom();
 };
 
-#endif // SWORD_H
+#endif
