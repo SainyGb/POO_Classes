@@ -38,72 +38,19 @@ Weapons::~Weapons()
     delete[] invPtr;
 }
 
-void Itens::getRaro() const
+void Weapons::getRaro() const
 {
     std::cout << "Raro: " << raro << '\n';
 }
 
-void Itens::ativarRaro()
+void Weapons::ativarRaro()
 {
     raro = true;
 }
 
-void Itens::desativarRaro()
+void Weapons::desativarRaro()
 {
     raro = false;
-}
-
-void Weapons::operator=(const Weapons &weapon)
-{
-    dmg = weapon.dmg;
-    durability = weapon.durability;
-}
-
-void Weapons::operator==(const Weapons &weapon)
-{
-    if (dmg == weapon.dmg)
-    {
-        std::cout << "\nO atributo dmg eh igual\n";
-    }
-    else
-    {
-        std::cout << "O atributo dmg eh diferente\n";
-    }
-
-    if (durability == weapon.durability)
-    {
-        std::cout << "O atributo durability eh igual\n";
-    }
-    else
-    {
-        std::cout << "O atributo durability eh diferente\n";
-    }
-}
-
-void Weapons::operator!=(const Weapons &weapon)
-{
-    if (dmg != weapon.dmg)
-    {
-        std::cout << "\nO atributo dmg eh diferente\n";
-    }
-    else
-    {
-        std::cout << "\nO atributo dmg eh igual\n";
-    }
-    if (durability != weapon.durability)
-    {
-        std::cout << "O atributo durability eh diferente\n";
-    }
-    else
-    {
-        std::cout << "O atributo durability eh igual\n";
-    }
-}
-
-Weapons Weapons::operator!()
-{
-    raro = !raro;
-    return Weapons(raro);
 }
 
 void Weapons::setDmg(int dmg)
@@ -159,6 +106,13 @@ void Weapons::getUpgradeTier()
 
 void Weapons::adicionarInv(const std::string &weapon)
 {
+    if (nextInv == 0)
+    {
+        invPtr = new std::string[invSize];
+        invPtr[nextInv++] = weapon;
+        return;
+    }
+
     if (nextInv < invSize)
     {
         invPtr[nextInv++] = weapon;
@@ -229,8 +183,8 @@ void Weapons::operator!=(const Weapons &weapon)
     }
 }
 
-Weapons Weapons::operator!()
-{
-    raro = !raro;
-    return Weapons(raro);
-}
+// Weapons Weapons::operator!()
+// {
+//     raro = !raro;
+//     return Weapons(raro);
+// }

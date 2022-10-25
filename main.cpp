@@ -22,10 +22,22 @@ int main()
     int charisma = 10;
     int health = 23;
 
+    int dmg = 10;
+    int durability = 50;
+    int upgrade = 0;
+
+    int price = 10;
+    int qtd = 1;
+    std::string type = "pocao";
+
+    int dia = 22;
+    int mes = 10;
+    int ano = 2022;
+
     std::cout << "Usando Mage no main\n";
 
     Mage magelvl9;
-    const Mage MAGELVL3(strength, constitution, dexterity, intelligence, wisdom, charisma, health);
+    const Mage MAGELVL3(strength, constitution, dexterity, intelligence, wisdom, charisma, health, dmg, durability, upgrade, price, qtd, type, dia, mes, ano);
     Mage othermagelvl3(MAGELVL3);
     Mage *magelvl9Ptr = &magelvl9;
     Mage *magePrt = new Mage();
@@ -58,22 +70,22 @@ int main()
     MAGELVL3.getStats();
     MAGELVL3.getConcentracao();
 
-    std::cout << "\nUsando operador = para copiar atributos do mage lvl3 para o lvl9\n";
-    magelvl9 = MAGELVL3;
-    cout << magelvl9;
+    // std::cout << "\nUsando operador = para copiar atributos do mage lvl3 para o lvl9\n";
+    // magelvl9 = MAGELVL3;
+    // cout << magelvl9;
 
-    std::cout << "\nUsando operador == para comparar atributos do mage lvl3 com o mage lvl9";
-    magelvl9 == MAGELVL3;
+    // std::cout << "\nUsando operador == para comparar atributos do mage lvl3 com o mage lvl9";
+    // magelvl9 == MAGELVL3;
 
-    std::cout << "\nUsando operador != para comparar atributos do mage lvl3 com o mage lvl9";
-    magelvl9 != MAGELVL3;
+    // std::cout << "\nUsando operador != para comparar atributos do mage lvl3 com o mage lvl9";
+    // magelvl9 != MAGELVL3;
 
-    std::cout << "\nUsando operador ! para negar a concentracao do mage lvl 9\n";
-    std::cout << "Sem negar concentracao: ";
-    magelvl9.getConcentracao();
-    std::cout << "\nDepois de negar com o operador: ";
-    !magelvl9;
-    magelvl9.getConcentracao();
+    // std::cout << "\nUsando operador ! para negar a concentracao do mage lvl 9\n";
+    // std::cout << "Sem negar concentracao: ";
+    // magelvl9.getConcentracao();
+    // std::cout << "\nDepois de negar com o operador: ";
+    // !magelvl9;
+    // magelvl9.getConcentracao();
 
     std::cout
         << "\nOtherMagelvl3\n\n";
@@ -89,9 +101,9 @@ int main()
     magePrt->getStats();
     delete magePrt;
 
-    std::cout << "\nCriando Pet\n";
-    Mage::Pet pet = magelvl9.invocarPet();
-    magelvl9.getPet(pet);
+    // std::cout << "\nCriando Pet\n";
+    // Mage::Pet pet = magelvl9.invocarPet();
+    // magelvl9.getPet(pet);
 
     std::cout << "Mostrando os niveis de poder\n";
     magePrt->printarNiveisPoder();
@@ -112,12 +124,11 @@ int main()
     }
 
     std::cout << "Adicionando itens no inventário\n";
-    magelvl9.adicionarInv("Couro");
-    magelvl9.adicionarInv("Carne de Zumbi");
-    magelvl9.adicionarInv("adaga quebrada");
-    magelvl9.adicionarInv("Couro");
-    magelvl9.adicionarInv("Couro");
-    magelvl9.adicionarInv("Couro");
+    magelvl9.adicionarInv("Couro", "item");
+    magelvl9.adicionarInv("Carne de Zumbi", "item");
+    magelvl9.adicionarInv("Adaga", "weapon");
+    magelvl9.adicionarInv("Cajado", "weapon");
+    magelvl9.adicionarInv("Couro", "item");
 
     std::cout << "Mostrando Inventario: \n\n";
     magelvl9.printInv();

@@ -20,6 +20,10 @@ public:
     void setDurability(int);
     void setUpgradeTier(int);
 
+    void getRaro() const;
+    void ativarRaro();
+    void desativarRaro();
+
     void getDmg();
     void getDurability();
     void getUpgradeTier();
@@ -27,10 +31,19 @@ public:
     void adicionarInv(const std::string &);
     void printInv() const;
 
+    void operator=(const Weapons &);
+
+    void operator==(const Weapons &);
+
+    void operator!=(const Weapons &);
+
+    Weapons operator!();
+
 private:
     int dmg;
     int durability;
     int upgradeTier;
+    bool raro;
 
     std::string *invPtr;
     int invSize;

@@ -14,16 +14,12 @@ class Mage
     friend std::ostream &operator<<(std::ostream &, const Mage &);
 
 public:
-    void operator=(const Mage &);
-
-    void operator==(const Mage &);
-
-    void operator!=(const Mage &);
-
-    Mage operator!();
-
-    Mage(const Data & = Data(19, 10, 2022));
-    Mage(int, int, int, int, int, int, int, int = 100, int = 100);
+    Mage();
+    Mage(/*comeca stats*/ int, int, int, int, int, int, int,
+         /*comeca weapons*/ int, int, int,
+         /*comeca itens*/ int, int, std::string,
+         /*comeca data*/ int, int, int,
+         /*comeca MAX*/ int = 100, int = 100);
     Mage(const Mage &);
     ~Mage();
 
@@ -51,7 +47,7 @@ public:
     void printInimigos() const;
     std::string escolherInimigosRandom();
 
-    void adicionarInv(const std::string &);
+    void adicionarInv(const std::string &, const std::string &);
     void printInv() const;
 
     void setCharName(const std::string &);
@@ -76,8 +72,19 @@ public:
     static int getNumChars() { return numChars; }
     static void getNumMaxChars();
 
+    void operator=(const Mage &);
+
+    void operator==(const Mage &);
+
+    void operator!=(const Mage &);
+
+    Mage operator!();
+
 private:
+    // composition:
     Data dataAtual;
+    Weapons weapons;
+    Itens itens;
 
     int strength;
     int constitution;
